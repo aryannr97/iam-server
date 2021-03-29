@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+option go_package = "/user";
+
+package user;
+
+message UserAddRequest {
+    string firstname = 1;
+    string lastname = 2;
+    string email = 3;
+    string phone = 4;
+    string country = 5;
+}
+
+message UserAddResponse {
+    string id = 1;
+}
+
+message UserGetReuqest {
+    string id = 1;
+}
+
+message UserGetResponse {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
+    string phone = 5;
+    string country = 6;
+}
+
+message UserUpdateRequest {
+    string id = 1;
+    string firstname = 2;
+    string lastname = 3;
+    string email = 4;
+    string phone = 5;
+    string country = 6;
+}
+
+message Empty{}
+
+message UserDeleteRequest {
+    string id = 1;
+}
+
+service UserService {
+    rpc AddUser (UserAddRequest) returns (UserAddResponse);
+    rpc GetUser (UserGetReuqest) returns (UserGetResponse);
+    rpc UpdateUser (UserUpdateRequest) returns (Empty);
+    rpc DeleteUser (UserDeleteRequest) returns (Empty);
+}

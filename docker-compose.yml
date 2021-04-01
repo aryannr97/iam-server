@@ -1,0 +1,10 @@
+version: "3"
+services:
+  iam-service:
+    container_name: server
+    build: .
+    ports:
+      - "8080:8080"
+    tty: true
+    environment: 
+      - DATA_SERVICE_URL=:9090

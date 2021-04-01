@@ -9,20 +9,6 @@ type AddUserRequest struct {
 	Country    string `json:"country"`
 }
 
-// AddUserResponse response body after adding user
-type AddUserResponse struct {
-	ID string `json:"id"`
-}
-
-// UserDetailsResponse response payload for user info
-type UserDetailsResponse struct {
-	Firstname  string `json:"firstname"`
-	Laststname string `json:"lastname"`
-	Email      string `json:"email"`
-	Phone      string `json:"phone"`
-	Country    string `json:"country"`
-}
-
 // UpdateUserRequest request payload for updating user details
 type UpdateUserRequest struct {
 	Firstname string `json:"firstname" binding:"required"`

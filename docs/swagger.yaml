@@ -1,0 +1,148 @@
+basePath: /iam/api/1.0/users
+definitions:
+  models.AddUserRequest:
+    properties:
+      country:
+        type: string
+      email:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      phone:
+        type: string
+    type: object
+  models.AddUserResponse:
+    properties:
+      id:
+        type: string
+    type: object
+  models.RestError:
+    properties:
+      errorMessage:
+        type: string
+      status:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  models.UpdateUserRequest:
+    properties:
+      country:
+        type: string
+      email:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      phone:
+        type: string
+    required:
+    - country
+    - email
+    - firstname
+    - lastname
+    - phone
+    type: object
+  models.UserDetailsResponse:
+    properties:
+      country:
+        type: string
+      email:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      phone:
+        type: string
+    type: object
+info:
+  contact: {}
+  title: IAM APIs
+  version: "1.0"
+paths:
+  /{userid}:
+    delete:
+      parameters:
+      - description: userid
+        in: path
+        name: userid
+        required: true
+        type: string
+      responses:
+        "204":
+          description: ""
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.RestError'
+      summary: Delete user API
+      tags:
+      - user-api
+    get:
+      parameters:
+      - description: userid
+        in: path
+        name: userid
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserDetailsResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.RestError'
+      summary: Get user API
+      tags:
+      - user-api
+    put:
+      parameters:
+      - description: userid
+        in: path
+        name: userid
+        required: true
+        type: string
+      - description: Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateUserRequest'
+      responses:
+        "204":
+          description: ""
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.RestError'
+      summary: Update user API
+      tags:
+      - user-api
+  /add:
+    post:
+      parameters:
+      - description: Request Body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/models.AddUserRequest'
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.AddUserResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.RestError'
+      summary: Add user API
+      tags:
+      - user-api
+swagger: "2.0"
